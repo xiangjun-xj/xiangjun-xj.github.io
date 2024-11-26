@@ -164,11 +164,11 @@
   <div class="hero-body">
     <div class="container is-max-desktop">
       <video id="teaser" autoplay controls muted loop playsinline height="100%">
-        <source src="./static/images/teaser-crop.mp4"
-                type="video/mp4">
+        <!-- <source src="./static/images/teaser-crop.mp4" type="video/mp4"> -->
+        <source src="https://raw.githubusercontent.com/xiangjun-xj/project_page_assets/master/OneShotOneTalk/teaser-crop.mp4" type="video/mp4">
       </video>
-      <!-- <h2 class="subtitle has-text-centered"> -->
-      <h2>
+      <h2 class="subtitle">
+      <!-- <h2> -->
         Given a one-shot image (e.g., your favorite photo) as input, our method reconstructs a fully expressive whole-body talking avatar
         that captures personalized details and supports realistic animation, including vivid body gestures and natural expression changes.
       </h2>
@@ -307,142 +307,46 @@
   </div>
 </section>
 
-<hr/>
-
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Motivation</h2>
-    <div class="columns is-centered">
-      <!-- Level Sets. -->
-      <div class="column is-half">
-        <div class="content">
-          <h3 class="title is-4">Level-Set Methods</h3>
-          <div class="level-set has-text-justified">
-            <p>
-              HyperNeRF represents changes in scene topology by providing a
-              NeRF with a higher-dimensional input. This is inspired by level-set methods.
-              Level-set methods provide a means to model a family of topologically-varying shapes as
-              slices of a higher dimensional auxiliary function. For example, these shapes
-            </p>
-            <div class="level-set-shapes">
-              <img src="./static/figures/level_set/0.svg"/>
-              <img src="./static/figures/level_set/1.svg"/>
-              <img src="./static/figures/level_set/2.svg"/>
-            </div>
-            <p>
-              can be represented as slices through this auxiliary shape
-            </p>
-            <model-viewer class="level-set-slices"
-                          src="./static/figures/level_set/level_set_3d.glb"
-                          alt="Slices through a 3D ambient surface."
-                          environment-image="neutral" auto-rotate camera-controls></model-viewer>
-            <p>
-              We can naturally model topologically varying shapes by just moving the
-              slicing plane along the higher dimensions. For example, this animation was generated
-              by
-              moving the slicing plane from top to bottom:
-            </p>
-            <div class="has-text-centered">
-              <video class="level-set-interpolate" controls autoplay loop playsinline muted height="100%">
-                <source src="./static/figures/level_set/interpolate2.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--/ Level Sets. -->
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="margin-top: -20px">Method Overview</h2>
 
-      <div class="column is-half">
+        <img src="https://raw.githubusercontent.com/xiangjun-xj/project_page_assets/master/OneShotOneTalk/pipe.png" class="center">
         <div class="content has-text-justified">
-          <h3 class="is-4">Slicing Surfaces</h3>
-          <p>
-            Consider the follow shapes, which have different permutations of O xand X.
+          <p style="margin-top: 30px">
+            Our method constructs an expressive whole-body talking avatar from a single image.
+            We begin by generating pseudo body and head frames using pre-trained generative models,
+            driven by a collected video dataset with diverse poses. Per-pixel supervision on the input image,
+            perceptual supervision on imperfect pseudo labels, and mesh-related constraints are then applied to guide the 3DGS-mesh
+            coupled avatar representation, ensuring realistic and expressive avatar reconstruction and animation.
           </p>
-          <div class="level-set-ox-shapes">
-            <img src="./static/figures/level_set/ox/0.svg"/>
-            <img src="./static/figures/level_set/ox/1.svg"/>
-            <img src="./static/figures/level_set/ox/2.svg"/>
-            <img src="./static/figures/level_set/ox/3.svg"/>
-          </div>
-          <p>
-            Traditionally, level-set methods use straight planes to slice the higher-dimensional
-            surface:
-          </p>
-          <model-viewer class="level-set-slices"
-                        src="./static/figures/level_set/ox/ox_ap.glb"
-                        alt="Slices through a 3D ambient surface."
-                        environment-image="neutral" auto-rotate camera-controls></model-viewer>
-          <p>
-            This means the higher-dimensional shape must contain copies of the same shape since
-            each permutation has to lie along a single straight slice through the z-axis. If we let
-            the slicing plane bend, it results in a much cleaner template:
-          </p>
-          <model-viewer class="level-set-slices"
-                        src="./static/figures/level_set/ox/ox_ds.glb"
-                        alt="Slices through a 3D ambient surface."
-                        environment-image="neutral" auto-rotate camera-controls></model-viewer>
-          <p>Please see the paper for details.</p>
         </div>
-      </div>
-
-    </div>
-  </div>
-
-
-  <div class="container is-max-desktop">
-    <div class="content has-text-justified">
-      <h2 class="title is-3">HyperNeRF</h2>
-      <p>
-        The HyperNeRF architecture is a straightforward extension to Nerfies. The key difference is
-        that the template NeRF is conditioned on additional higher-dimensional coordinates, where
-        the higher dimensional coordinates are given by an "ambient slicing surface" which can be
-        thought of as a higher dimensional analog to the deformation field.
-      </p>
-      <div class="has-text-centered">
-        <img style="width: 90%;" src="./static/figures/architecture.svg"
-             alt="HyperNeRF architecture."/>
-      </div>
-      <h3 class="title is-4">Hyper-Space Template</h3>
-      <p>
-        HyperNeRF leverages main idea of level set methods by using a template NeRF which lives in
-        higher dimensions. In addition to the spatial coordinates (X, Y, Z), the NeRF MLP takes
-        additional higher dimensional coordinates W<sub>1</sub> and W<sub>2</sub>. We call these
-        the "ambient dimensions".
-      </p>
-      <p>
-        Here is an interactive viewer for the hyper-space of capture shown in the teaser. Drag the
-        <span style="color: #29e">blue cursor</span> around to change the ambient dimension rendered
-        on the right.
-      </p>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-half">
-        <div class="hyper-space-wrapper has-text-centered">
-          <div class="hyper-space-axis">
-            <div class="hyper-space">
-              <div class="hyper-space-cursor"></div>
-            </div>
-          </div>
-          Ambient Dimension Coordinates
-          <br/>
-          <small>(Background shows log density of coordinate)</small>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 controls
+                 preload
+                 playsinline
+                 loop
+                 width="100%">
+            <source src="https://raw.githubusercontent.com/xiangjun-xj/project_page_assets/master/OneShotOneTalk/pipeline-crop.mp4"
+                    type="video/mp4">
+          </video>
         </div>
-      </div>
-      <div class="column is-half has-text-centered">
-        <div class="hyper-grid-wrapper">
-          <div class="hyper-grid-rgb">
-            <img src="./static/figures/hyper_grid.jpg"/>
-          </div>
-        </div>
-        The hyper-space template rendered from a fixed viewpoint.
+
       </div>
     </div>
+    <!--/ Animation. -->
   </div>
 </section>
 
 <hr/>
 
-<section class="section" id="BibTeX">
+
+
+<!-- <section class="section" id="BibTeX">
   <div class="container content is-max-desktop">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{park2021hypernerf,
@@ -458,10 +362,10 @@
   articleno = {238},
 }</code></pre>
   </div>
-</section>
+</section> -->
 
 
-<section class="section" id="acknowledgements">
+<!-- <section class="section" id="acknowledgements">
   <div class="container content is-max-desktop">
     <h2 class="title">Acknowledgements</h2>
     <p>Special thanks to <a href="https://homes.cs.washington.edu/~holynski/">Aleksander Hołyński</a>,
@@ -469,21 +373,21 @@
       help with collecting data. Thanks to <a href="https://zhengqili.github.io/">Zhengqi Li</a> and
       <a href="http://www.oliverwang.info/">Oliver Wang</a> for their help with the NSFF experiments.</p>
   </div>
-</section>
+</section> -->
 
 
-<footer class="footer">
+<!-- <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link" href="https://arxiv.org/pdf/2106.13228.pdf">
+      <a class="icon-link" href="https://xiangjun-xj.github.io/OneShotOneTalk/">
         <i class="fas fa-file-pdf"></i>
       </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+      <a class="icon-link" href="https://github.com/xiangjun-xj" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>
     </div>
   </div>
-</footer>
+</footer> -->
 
 <script type="text/javascript" src="./static/slick/slick.min.js"></script>
 </body>
