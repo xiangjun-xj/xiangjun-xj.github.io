@@ -167,16 +167,17 @@
         <source src="./static/images/teaser-crop.mp4"
                 type="video/mp4">
       </video>
-      <h2 class="subtitle has-text-centered">
+      <!-- <h2 class="subtitle has-text-centered"> -->
+      <h2>
         Given a one-shot image (e.g., your favorite photo) as input, our method reconstructs a fully expressive whole-body talking avatar
-that captures personalized details and supports realistic animation, including vivid body gestures and natural expression changes.
+        that captures personalized details and supports realistic animation, including vivid body gestures and natural expression changes.
       </h2>
     </div>
   </div>
 </section>
 
 
-<section class="hero is-dark is-small">
+<!-- <section class="hero is-dark is-small">
   <div class="hero-body">
     <div class="container has-text-centered">
       <div id="results-carousel" class="carousel results-carousel">
@@ -262,7 +263,7 @@ that captures personalized details and supports realistic animation, including v
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
 <section class="section">
@@ -274,26 +275,16 @@ that captures personalized details and supports realistic animation, including v
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Neural Radiance Fields (NeRF) are able to reconstruct scenes with unprecedented
-            fidelity,
-            and various recent works have extended NeRF to handle dynamic scenes. A common approach
-            to reconstruct such non-rigid scenes is through the use of a learned deformation field
-            mapping from coordinates in each input image into a canonical template coordinate space.
-            However, these deformation-based approaches struggle to model changes in topology, as
-            topological changes require a discontinuity in the deformation field, but these
-            deformation fields are necessarily continuous.
-          </p>
-          <p>
-            We address this limitation by lifting
-            NeRFs into a higher dimensional space, and by representing the 5D radiance field
-            corresponding to each individual input image as a slice through this "hyper-space". Our
-            method is inspired by level set methods, which model the evolution of surfaces as slices
-            through a higher dimensional surface. We evaluate our method on two tasks: (i)
-            interpolating smoothly between "moments", i.e., configurations of the scene, seen in the
-            input images while maintaining visual plausibility, and (ii) novel-view synthesis at
-            fixed moments. We show that our method, which we dub HyperNeRF, outperforms existing
-            methods on both tasks. Compared to Nerfies, <i>HyperNeRF</i> reduces average error rates by
-            4.1% for interpolation and 8.6% for novel-view synthesis, as measured by LPIPS.
+            Building realistic and animatable avatars still requires minutes of multi-view or monocular self-rotating videos,
+            and most methods lack precise control over gestures and expressions. To push this boundary,
+            we address the challenge of constructing a whole-body talking avatar from a single image.
+            We propose a novel pipeline that tackles two critical issues: 1) complex dynamic modeling and 2)
+            generalization to novel gestures and expressions. To achieve seamless generalization, we leverage recent
+            pose-guided image-to-video diffusion models to generate imperfect video frames as pseudo-labels.
+            To overcome the dynamic modeling challenge posed by inconsistent and noisy pseudo-videos, we introduce a tightly
+            coupled 3DGS-mesh hybrid avatar representation and apply several key regularizations to mitigate inconsistencies
+            caused by imperfect labels. Extensive experiments on diverse subjects demonstrate that our method enables
+            the creation of a photorealistic, precisely animatable, and expressive whole-body talking avatar from just a single image.
           </p>
         </div>
       </div>
@@ -301,7 +292,7 @@ that captures personalized details and supports realistic animation, including v
     <!--/ Abstract. -->
 
     <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
+    <!-- <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-2">Video</h2>
         <div class="publication-video">
@@ -311,7 +302,7 @@ that captures personalized details and supports realistic animation, including v
                   allowfullscreen></iframe>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--/ Paper video. -->
   </div>
 </section>
