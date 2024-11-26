@@ -342,6 +342,114 @@
   </div>
 </section>
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Results. -->
+    <div class="columns is-centered ">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered" style="margin-top: -30px">Comparison</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            We compare our work with baseline methods, ExAvatar, ELICIT, MimicMotion and Make-Your-Anchor on diverse tasks like
+            cross-identity motion reenactment, self-driven motion reenactment and upper-body video-driven.
+            Our method achieves accurate and realistic animation with almost all fine details preserved and identity unchanged.          
+          </p>
+          <p></p>
+            Note that for ExAvatar, since it takes short videos as input, we compare with two versions of it:
+            ExAvatar-40shot, which uses 40-shot images, and ExAvatar-1shot, which uses one-shot images as input.
+            For Make-Your-Anchor, as we find it does not perform well on one-shot input, we only compare it with available
+            video input by fine-tuning it on a short video clip.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 controls
+                 muted
+                 preload
+                 playsinline
+                 loop
+                 width="100%">
+            <source src="https://raw.githubusercontent.com/xiangjun-xj/project_page_assets/master/OneShotOneTalk/comparison-crop.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- More results. -->
+    <div class="columns is-centered ">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered" style="margin-top: -30px">More results on cross-identity video-driven
+        </h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Using the same driving pose, identities with completely different attributes can be driven in the same way,
+            thanks to the SMPL-X model and the 3DGS-mesh coupled representation.          
+          </p>
+        </div>
+        
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 controls
+                 preload
+                 playsinline
+                 loop
+                 width="100%">
+            <source src="https://raw.githubusercontent.com/xiangjun-xj/project_page_assets/master/OneShotOneTalk/samepose-crop.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- More results. -->
+    <div class="columns is-centered ">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered" style="margin-top: -30px">More results on NVS and motion reenactment
+        </h2>
+        
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 controls
+                 preload
+                 playsinline
+                 loop
+                 width="100%">
+            <source src="https://raw.githubusercontent.com/xiangjun-xj/project_page_assets/master/OneShotOneTalk/more-crop.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <div class="content has-text-justified">
+      <p>
+        In this paper, we introduce a novel pipeline for creating expressive talking avatars from a single image.
+        We propose a coupled 3DGS-Mesh avatar representation, incorporating several key constraints and a carefully designed hybrid
+        learning framework that combines information from both the input image and pseudo frames.
+        Experimental results demonstrate that our method outperforms existing techniques, with our one-shot avatar even surpassing
+        state-of-the-art methods that require video input. Considering its simplicity in construction and ability to generate vivid,
+        realistic animations, our method shows significant potential for practical applications of talking avatars across various fields.
+      </p>
+    </div>
+
+  </div>
+</section>
+
 <hr/>
 
 
@@ -376,18 +484,18 @@
 </section> -->
 
 
-<!-- <footer class="footer">
+<footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
       <a class="icon-link" href="https://xiangjun-xj.github.io/OneShotOneTalk/">
         <i class="fas fa-file-pdf"></i>
       </a>
-      <a class="icon-link" href="https://github.com/xiangjun-xj" class="external-link" disabled>
+      <a class="icon-link" href="https://xiangjun-xj.github.io/OneShotOneTalk/" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>
     </div>
   </div>
-</footer> -->
+</footer>
 
 <script type="text/javascript" src="./static/slick/slick.min.js"></script>
 </body>
